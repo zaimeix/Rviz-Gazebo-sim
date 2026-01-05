@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="$(arg robot_name)">
+    <xacro:arg name="robot_name" default="default_robot" />
+    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+    <xacro:arg name="robot_urdf_file" default="" />
+    <xacro:arg name="robot_control_xacro_file" default="" />
+    <xacro:arg name="robot_control_yaml_file" default="" />
+    <xacro:arg name="control_macro_name" default="" />
+
+    <!-- Import robot urdf file - use $(arg ...) syntax -->
+    <xacro:include filename="$(arg robot_urdf_file)" />
+
+    <!-- Import control_xacro - use $(arg ...) syntax -->
+    <xacro:include filename="$(arg robot_control_xacro_file)" />
+    <!--
+    <xacro:include filename="$(arg robot_control_xacro_file)">
+        <xacro:arg name="initial_positions_file" value="$(initial_positions_file)"/>
+    </xacro:include>
+    -->
+
+    <xacro:waikato_robot_control name="GazeboSystem" initial_positions_file="$(arg initial_positions_file)"/>
+
+    <gazebo>
+        <!---
+        <plugin name="gz_ros2_control" filename="libgz_ros2_control-system.so">
+          <parameters>$(arg robot_control_yaml_file)</parameters>
+        </plugin>
+        -->
+        <plugin name="gz_ros2_control::GazeboSimROS2ControlPlugin" filename="libgz_ros2_control-system.so">
+          <ros2_control>
+            <parameters>$(arg robot_control_yaml_file)</parameters>
+          </ros2_control>
+        </plugin>
+    </gazebo>
+</robot>

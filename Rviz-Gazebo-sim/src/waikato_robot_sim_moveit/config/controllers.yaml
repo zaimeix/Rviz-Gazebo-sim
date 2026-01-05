@@ -1,0 +1,13 @@
+controller_manager_ns: controller_manager
+controller_list:
+  - name: controller_manager/manipulator_controller
+    action_ns: follow_joint_trajectory
+    type: follow_joint_trajectory/FollowJointTrajectory
+    default: true
+    joints:
+      - shoulder_pan
+      - shoulder_lift
+      - elbow_flex
+      - wrist_flex
+      - wrist_roll
+      - gripper

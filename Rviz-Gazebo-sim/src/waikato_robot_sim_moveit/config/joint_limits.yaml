@@ -1,0 +1,62 @@
+# joint_limits.yaml allows the dynamics properties specified in the URDF to be overwritten or augmented as needed
+
+# For beginners, we downscale velocity and acceleration limits.
+default_velocity_scaling_factor: 0.3
+default_acceleration_scaling_factor: 0.3
+
+# Specific joint properties can be changed with the keys [max_position, min_position, max_velocity, max_acceleration]
+# Joint limits can be turned off with [has_velocity_limits, has_acceleration_limits]
+joint_limits:
+  shoulder_pan:
+    has_velocity_limits: true
+    max_velocity: 2.0  # Reduced from URDF's 10.0 to more realistic value
+    has_acceleration_limits: true
+    max_acceleration: 3.0
+    has_position_limits: true
+    min_position: -2.055  # From URDF
+    max_position: 2.058   # From URDF
+    
+  shoulder_lift:
+    has_velocity_limits: true
+    max_velocity: 2.0
+    has_acceleration_limits: true
+    max_acceleration: 3.0
+    has_position_limits: true
+    min_position: -2.018  # From URDF
+    max_position: 2.018   # From URDF
+    
+  elbow_flex:
+    has_velocity_limits: true
+    max_velocity: 2.0
+    has_acceleration_limits: true
+    max_acceleration: 3.0
+    has_position_limits: true
+    min_position: -1.653  # From URDF
+    max_position: 1.654   # From URDF
+    
+  wrist_flex:
+    has_velocity_limits: true
+    max_velocity: 2.0
+    has_acceleration_limits: true
+    max_acceleration: 3.0
+    has_position_limits: true
+    min_position: -1.786  # From URDF
+    max_position: 1.790   # From URDF
+    
+  wrist_roll:
+    has_velocity_limits: true
+    max_velocity: 3.0
+    has_acceleration_limits: true
+    max_acceleration: 5.0
+    has_position_limits: true
+    min_position: -3.194  # From URDF
+    max_position: 4.120   # From URDF
+    
+  gripper:
+    has_velocity_limits: true
+    max_velocity: 1.0
+    has_acceleration_limits: true
+    max_acceleration: 2.0
+    has_position_limits: true
+    min_position: -0.174533  # From URDF
+    max_position: 1.74533    # From URDF
